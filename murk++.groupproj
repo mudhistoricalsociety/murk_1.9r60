@@ -1,0 +1,72 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{2BAA1BE7-7FF0-42C0-B817-B5918C9A02BF}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="sqlite3\libsqlite3.cbproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="murk.cbproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="loadhelps.cbproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="sqlite3\sqlite3.cbproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="libsqlite3">
+			<MSBuild Projects="sqlite3\libsqlite3.cbproj"/>
+		</Target>
+		<Target Name="libsqlite3:Clean">
+			<MSBuild Projects="sqlite3\libsqlite3.cbproj" Targets="Clean"/>
+		</Target>
+		<Target Name="libsqlite3:Make">
+			<MSBuild Projects="sqlite3\libsqlite3.cbproj" Targets="Make"/>
+		</Target>
+		<Target Name="murk">
+			<MSBuild Projects="murk.cbproj"/>
+		</Target>
+		<Target Name="murk:Clean">
+			<MSBuild Projects="murk.cbproj" Targets="Clean"/>
+		</Target>
+		<Target Name="murk:Make">
+			<MSBuild Projects="murk.cbproj" Targets="Make"/>
+		</Target>
+		<Target Name="loadhelps">
+			<MSBuild Projects="loadhelps.cbproj"/>
+		</Target>
+		<Target Name="loadhelps:Clean">
+			<MSBuild Projects="loadhelps.cbproj" Targets="Clean"/>
+		</Target>
+		<Target Name="loadhelps:Make">
+			<MSBuild Projects="loadhelps.cbproj" Targets="Make"/>
+		</Target>
+		<Target Name="sqlite3">
+			<MSBuild Projects="sqlite3\sqlite3.cbproj"/>
+		</Target>
+		<Target Name="sqlite3:Clean">
+			<MSBuild Projects="sqlite3\sqlite3.cbproj" Targets="Clean"/>
+		</Target>
+		<Target Name="sqlite3:Make">
+			<MSBuild Projects="sqlite3\sqlite3.cbproj" Targets="Make"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="libsqlite3;murk;loadhelps;sqlite3"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="libsqlite3:Clean;murk:Clean;loadhelps:Clean;sqlite3:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="libsqlite3:Make;murk:Make;loadhelps:Make;sqlite3:Make"/>
+		</Target>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
+	</Project>
